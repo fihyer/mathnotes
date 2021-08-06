@@ -21,8 +21,10 @@ jobs:
           name: PDF
           path: main.pdf
         if: always()
-      - name: Release book
-        uses: softprops/action-gh-release@v1
+      - name: GH Release
+        uses: softprops/action-gh-release@v0.1.7
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: main.pdf
+          files: | 
+            PDF.zip
+            main.pdf
