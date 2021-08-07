@@ -26,4 +26,6 @@ jobs:
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          name: Latest
+          tag_name: release
           files: ./main.pdf
