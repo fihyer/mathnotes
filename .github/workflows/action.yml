@@ -21,18 +21,9 @@ jobs:
           name: PDF
           path: main.pdf
         if: always()
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Check pdf files
-        run: |
-          file main.pdf | grep -q 'PDF'
       - name: GH Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: main.pdf
+          files: ./main.pdf
