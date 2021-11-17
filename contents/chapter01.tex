@@ -2,13 +2,69 @@
 \graphicspath{\subfix{../images}}{\subfix{../figures}}
 
 \begin{document}
-\section{集合基础}
+\section{集合}
+\begin{introduction}
+    \item 集合的概念~\ref{def:naive-set}
+    \item 子集~\ref{def:subset}
+    \item 真子集~\ref{def:proper-subset}
+    \item 空集~\ref{def:empty-set}
+\end{introduction}
+
+集合概念的发展历史悠久
+\improvement{关于集合的发展史，有待完善，目的：能够大致提现其进程，可以让人看到集合论的大致全貌}
 
 \subsection{集合的概念}
 
+\begin{definition}{集合（非定义的定义）(set)}{naive-set}
+    \textcolor{main}{集合}(简称集)是指具有某种特定性质的物质或者是抽象对象组成的整体，在数学上这些物质或者抽象对象通常就是我们的研究对象，一般地，我们把研究对象统称为\textcolor{main}{元素}(element)或成员.
+\end{definition}
+
 \subsection{集合见的基本关系}
+\begin{definition}{子集(subset)}{subset}
+   对于两个集合 $A$， $B$， 如果集合 $A$ 中任意一个元素都是集合 $B$ 中的元素， 就称集合 $A$ 是集合 $B$ 的\textcolor{main}{子集}，记作 $A \subseteq B$ (或 )， 读作 "$A$ 包含与 $B$" (或 "$B$ 包含 $A$"). \\
+   $A \subseteq B :\Leftrightarrow (\forall x \in A: x \in B)$
+\end{definition}
+
+\begin{definition}{真子集(proper subset)}{proper-subset}
+   如果集合 $A \subseteq B$， 但存在元素 $x \in B$，且 $x \notin A$， 就称集合 $A$ 是集合 $B$ 的\textcolor{main}{真子集}，记作 $A \subsetneqq B$ （或）， 读作 "$A$ 真包含于 $B$" (或 "$B$ 真包含 $A$").\\
+   $A \subsetneqq B :\Leftrightarrow (A \subseteq B) \land (\exists x_0 \in B: x_0 \notin A)$
+\end{definition}
+
+\begin{definition}{空集}{empty-set}
+    不含任何元素的集合叫做\textcolor{main}{空集}, 记作 $\varnothing$， 并规定\textbf{空集是任何集合的子集}.
+\end{definition}
+
+\begin{property}\label{property:set-prop}
+    对于任意的集合 $A, B, C$，有：
+    \begin{enumerate}
+        \item $A \subseteq A$;
+        \item 若 $A \subseteq B$, 且 $B \subseteq C$， 则 $A \subseteq C$.
+    \end{enumerate}
+\end{property}
+
+% 集合元素的个数(Cardinality of the set)
+\improvement[inline]{集合元素的个数(Cardinality of the set)相关知识有待完善}
+
 
 \subsection{集合的基本运算}
+
+\begin{definition}{并集 (union set)}{union-set}
+    设有集合 $A$, $B$, $C$， 若集合 $C$ 是由所有属于集合 $A$ \textcolor{second}{或}属于集合 $B$ 的元素组成的， 那么我们称集合 $C$ 是集合 $A$ 与 $B$ 的\textcolor{main}{并集}， 记作 $A \cup B$, 读作 "$A \mbox{并} B". \\
+    \begin{equation*}
+        C = A \cup B = \{ x \mid x \in A, \mbox{或} x \in B \}
+    \end{equation*}
+\end{definition}
+
+\begin{definition}{交集 (intersection set)}{intersection-set}
+    设有集合 $A$, $B$, $C$， 若集合 $C$ 是由所有属于集合 $A$ \textcolor{second}{且}属于集合 $B$ 的元素组成的， 那么我们称集合 $C$ 是集合 $A$ 与 $B$ 的\textcolor{main}{交集}， 记作 $A \cap B$, 读作 "$A \mbox{交} B". \\
+    \begin{equation*}
+        C = A \cap B = \{ x \mid x \in A, \mbox{且} x \in B \}
+    \end{equation*}
+\end{definition}
+
+\begin{definition}{全集 (universe set)}{universe-set}
+    
+\end{definition}
 
 \section{常用逻辑用语}
 
