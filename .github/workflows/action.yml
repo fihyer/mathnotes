@@ -14,12 +14,15 @@ jobs:
           latexmk_use_xelatex: true
       - name: Check pdf files
         run: |
-          file MathNote.pdf | grep -q 'PDF'
+          file main.pdf | grep -q 'PDF'
+      - name: Compress files
+        run: |
+          sudo apt-get install zip && zip Math-Note${{ github.ref }}.zip main.pdf
       - name: Upload artifacts
         uses: actions/upload-artifact@master
         with:
-          name: PDF
-          path: MathNote.pdf
+          name: ZIP
+          path: Math-Note${{ github.ref }}.zip 
         if: always()
       - name: GH Release
         uses: softprops/action-gh-release@v1
@@ -27,4 +30,4 @@ jobs:
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: ./MathNote.pdf
+          files: ./Math-note${{ github.ref }}.zip
