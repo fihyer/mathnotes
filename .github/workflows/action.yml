@@ -26,7 +26,7 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: ZIP
-          path: Math-Note${{ github.ref }}.zip 
+          path: Math-Note${{ steps.get_version.outputs.VERSION }}.zip 
         if: always()
       - name: GH Release
         uses: softprops/action-gh-release@v1
@@ -34,4 +34,4 @@ jobs:
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: ./Math-note${{ github.ref }}.zip
+          files: ./Math-note${{ steps.get_version.outputs.VERSION }}.zip
