@@ -7,6 +7,9 @@ jobs:
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v2
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
       - name: Compile Latex document
         uses: xu-cheng/latex-action@v2
         with:
@@ -15,18 +18,12 @@ jobs:
       - name: Check pdf files
         run: |
           file main.pdf | grep -q 'PDF'
-      - name: Get the version
-        id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-      - name: Compress files
-        run: |
-          sudo apt-get install zip
-          zip Math-Note${{ steps.get_version.outputs.VERSION }}.zip main.pdf
+          mv main.pdf Math-Note${{ steps.get_version.outputs.VERSION }}.pdf
       - name: Upload artifacts
         uses: actions/upload-artifact@master
         with:
-          name: ZIP
-          path: Math-Note${{ steps.get_version.outputs.VERSION }}.zip 
+          name: PDF
+          path: Math-Note${{ steps.get_version.outputs.VERSION }}.pdf
         if: always()
       - name: GH Release
         uses: softprops/action-gh-release@v1
@@ -34,4 +31,4 @@ jobs:
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: ./Math-note${{ steps.get_version.outputs.VERSION }}.zip
+          files: ./Math-note${{ steps.get_version.outputs.VERSION }}.pdf
