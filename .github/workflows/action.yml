@@ -15,9 +15,13 @@ jobs:
       - name: Check pdf files
         run: |
           file main.pdf | grep -q 'PDF'
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
       - name: Compress files
         run: |
-          sudo apt-get install zip && zip Math-Note${{ github.ref }}.zip main.pdf
+          sudo apt-get install zip
+          zip Math-Note${{ steps.get_version.outputs.VERSION }}.zip main.pdf
       - name: Upload artifacts
         uses: actions/upload-artifact@master
         with:
