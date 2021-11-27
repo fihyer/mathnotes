@@ -14,12 +14,12 @@ jobs:
           latexmk_use_xelatex: true
       - name: Check pdf files
         run: |
-          file main.pdf | grep -q 'PDF'
+          file MathNote.pdf | grep -q 'PDF'
       - name: Upload artifacts
         uses: actions/upload-artifact@master
         with:
           name: PDF
-          path: main.pdf
+          path: MathNote.pdf
         if: always()
       - name: GH Release
         uses: softprops/action-gh-release@v1
@@ -27,4 +27,4 @@ jobs:
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: ./MathNotes.pdf
+          files: ./MathNote.pdf
